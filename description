@@ -3,10 +3,9 @@ Title: Diameter of a binary tree
 Author: Jean-Christophe Filliâtre
 Institution: LRI, Orsay
 Description: 
-  This contribution contains the verification of a divide-and-conqueer
+  This contribution contains the verification of a divide-and-conquer
   algorithm to compute the diameter of a binary tree (the 
   maxmimal distance between two nodes in the tree).
-Keywords: program verification, tree, path, garph, distance, diameter
-
+Keywords: program verification, trees, paths, graphs, distance, diameter
 
 Category: Computer Science/Decision Procedures and Certified Algorithms/Correctness proofs of algorithms
