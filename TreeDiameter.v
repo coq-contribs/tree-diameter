@@ -662,9 +662,9 @@ Defined.
 
 Definition diam (t:tree) : { d:nat | Diameter t d }.
 Proof.
-  refine (fun t => match diamh t with
-                            | exist dh _ => (exist _ (fst dh) _)
-                            end).
+  refine (match diamh t with
+          | exist dh _ => (exist _ (fst dh) _)
+          end).
   destruct dh; simpl; intuition.
 Defined.
 
