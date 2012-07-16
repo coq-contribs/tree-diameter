@@ -30,6 +30,8 @@
         (max d1 (max d2 (2+h1+h2)), 1+max h1 h2)
 *)
 
+Global Set Asymmetric Patterns.
+
 Require Export Omega.
 Require Export Arith.
 Require Export List.
