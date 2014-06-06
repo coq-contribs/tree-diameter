@@ -30,6 +30,7 @@
         (max d1 (max d2 (2+h1+h2)), 1+max h1 h2)
 *)
 
+Unset Standard Proposition Elimination Names.
 Global Set Asymmetric Patterns.
 
 Require Export Omega.
@@ -466,8 +467,8 @@ Lemma key_lemma : forall t1 t2 d1 d2,
   Diameter (Node t1 t2) (max d1 (max d2 (2+height t1+height t2))).
 Proof.
   unfold Diameter.
-  intros t1 t2 d1 d2 ((t11, (t12, h1t1),h2t1)).
-  intros ((t21,(t22,h1t2),h2t2)).
+  intros t1 t2 d1 d2 ((t11, (t12, h1t1)),h2t1).
+  intros ((t21,(t22,h1t2)),h2t2).
   split.
   elim (max_3_cases d1 d2 (2+height t1+height t2)).
   intros (hmax1,(hmax2 ,hmax3)); rewrite hmax3; clear hmax3.
