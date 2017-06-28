@@ -67,12 +67,12 @@ Section Paths.
     replace (0+m) with m; auto with *.
     replace (S n+m) with (S (n+m)); auto with *.
     apply path_cons with x2; auto.   
-  Save.
+  Qed.
 
   Lemma path_1 : forall x y, g x y -> path x y 1.
   Proof.
     intros; apply path_cons with y; auto. apply path_nil.
-  Save.
+  Qed.
 
   Lemma path_snoc : forall x y z n, path x y n -> g y z -> path x z (S n).
   Proof.
@@ -80,7 +80,7 @@ Section Paths.
     apply path_cons with z; auto.
     apply path_nil.
     apply path_cons with x2; auto.
-  Save.
+  Qed.
 
   Lemma path_sym : 
     (forall x y, g x y -> g y x) ->
@@ -89,7 +89,7 @@ Section Paths.
     intro g_sym; induction 1.
     apply path_nil.
     apply path_snoc with x2; auto.
-  Save.
+  Qed.
 
 End Paths.
 Implicit Arguments path [A].
@@ -132,7 +132,7 @@ Hint Constructors adj.
 Lemma adj_sym : forall p1 p2, adj p1 p2 -> adj p2 p1.
 Proof.
   induction 1; auto.
-Save.
+Qed.
 Hint Resolve adj_sym.
 
 (* the graph induced by a binary tree *)
@@ -143,7 +143,7 @@ Definition gt (t:tree) (p1 p2 : pos) : Prop :=
 Lemma gt_sym : forall t p1 p2, gt t p1 p2 -> gt t p2 p1.
 Proof.
   unfold gt; intuition.
-Save.
+Qed.
 Hint Resolve gt_sym.
 
 Lemma gt_empty : forall t1 t2, ~(gt Empty t1 t2).
@@ -153,7 +153,7 @@ Proof.
   inversion H0; subst.
   inversion H; subst.
   inversion_clear H2.
-Save.
+Qed.
 
 Lemma path_gt_r: forall l r p1 p2 n,
   path (gt r) p1 p2 n -> path (gt (Node l r)) (Right::p1) (Right::p2) n.
@@ -161,7 +161,7 @@ Proof.
   induction 1; auto.
   apply path_cons with (Right::x2); auto.
   red in H; red; intuition.
-Save.
+Qed.
 
 Lemma path_gt_l: forall l r p1 p2 n,
   path (gt l) p1 p2 n -> path (gt (Node l r)) (Left::p1) (Left::p2) n.
@@ -169,7 +169,7 @@ Proof.
   induction 1; auto.
   apply path_cons with (Left::x2); auto.
   red in H; red; intuition.
-Save.
+Qed.
 
 Lemma path_gt_r_root_inv : forall l r n,
   (forall p2, path (gt (Node l r)) nil (Right::p2) n -> 
@@ -284,21 +284,21 @@ Proof.
   apply path_trans with x2; auto.
   red in H0; intuition.
   inversion H4.
-Save.
+Qed.
 
 Lemma path_gt_r_root : forall l r n p2,
   path (gt (Node l r)) nil (Right::p2) n -> 
   exists n', n' < n /\ path (gt r) nil p2 n'.
 Proof.
   intros l r n; generalize (path_gt_r_root_inv l r n); intuition.
-Save.
+Qed.
 
 Lemma path_gt_r_inv : forall l r n p1 p2,
   path (gt (Node l r)) (Right::p1) (Right::p2) n -> 
   exists n', n'<=n /\ path (gt r) p1 p2 n'.
 Proof.
   intros l r n; generalize (path_gt_r_root_inv l r n); intuition.
-Save.
+Qed.
 
 Lemma split : forall l r m p1 p2,
    path (gt (Node l r)) (Left::p1) (Right::p2) m ->
@@ -306,21 +306,21 @@ Lemma split : forall l r m p1 p2,
      path (gt l) p1 nil m1 /\ path (gt r) nil p2 m2 /\ m>=2+m1+m2.
 Proof.
   intros l r m; generalize (path_gt_r_root_inv l r m); intuition.
-Save.
+Qed.
 
 Lemma path_gt_l_root : forall l r n p2,
   path (gt (Node l r)) nil (Left::p2) n -> 
   exists n', n' < n /\ path (gt l) nil p2 n'.
 Proof.
   intros l r n; generalize (path_gt_r_root_inv l r n); intuition.
-Save.
+Qed.
 
 Lemma path_gt_l_inv : forall l r n p1 p2,
   path (gt (Node l r)) (Left::p1) (Left::p2) n -> 
   exists n', n'<=n /\ path (gt l) p1 p2 n'.
 Proof.
   intros l r n; generalize (path_gt_r_root_inv l r n); intuition.
-Save.
+Qed.
 
 Require Export Max.
 
@@ -335,25 +335,25 @@ Ltac Max n m :=
   | omega ].
 
 Lemma max_1 : forall n m, n<=m -> max n m = m.
-Proof. intros n m; Max n m; intuition. Save.
+Proof. intros n m; Max n m; intuition. Qed.
 
 Lemma max_2 : forall n m p, n <= m -> n <= max m p.
-Proof. intros n m p; Max m p; intuition. Save.
+Proof. intros n m p; Max m p; intuition. Qed.
 
 Lemma max_3 : forall n m, n>m -> max n m = n.
-Proof. intros n m; Max n m; intuition. Save.
+Proof. intros n m; Max n m; intuition. Qed.
 
 Lemma max_4 : forall n m p, n <= p -> n <= max m p.
-Proof. intros n m p; Max m p; intuition. Save.
+Proof. intros n m p; Max m p; intuition. Qed.
 
 Lemma max_5 : forall n m, n <= max n m.
-Proof. intros n m; Max n m; intuition. Save.
+Proof. intros n m; Max n m; intuition. Qed.
 
 Lemma max_6 : forall n m, m <= max n m.
-Proof. intros n m; Max n m; intuition. Save.
+Proof. intros n m; Max n m; intuition. Qed.
 
 Lemma max_7 : forall n m, max n m <= n+m.
-Proof. intros n m; Max n m; intuition. Save.
+Proof. intros n m; Max n m; intuition. Qed.
 
 Lemma max_3_cases : forall x y z,
   (x >= y /\ x >= z /\ max x (max y z) = x) \/
@@ -368,7 +368,7 @@ Proof.
   replace (max y z) with y.
   Max x y; intuition.
   rewrite max_l; intuition.
-Save.
+Qed.
 
 Hint Resolve max_2.
 
@@ -401,7 +401,7 @@ Proof.
   elim (path_gt_l_root _ _ _ _ H0); intros x (Hm1, Hm2).
   generalize (H2 _ Hm2).
   omega.
-Save.
+Qed.
 
 Lemma dist_height_max :
   forall t p n, dist (gt t) nil p n -> n <= height t.
@@ -456,7 +456,7 @@ Proof.
   omega.
   omega.
   generalize (max_6 (height t1) (height t2)); omega.
-Save.
+Qed.
 
 (* diameter of a binary tree *)
 
@@ -640,7 +640,7 @@ Proof.
   apply H1; apply path_gt_r; auto.
   replace m with m'; [idtac|omega].
   apply (h2t2 _ _ _ H2).
-Save.
+Qed.
 
 Definition diamh (t:tree) : 
   { r:nat*nat | let (d,h) := r in Diameter t d /\ h=height t }.
