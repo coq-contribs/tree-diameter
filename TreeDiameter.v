@@ -30,7 +30,6 @@
         (max d1 (max d2 (2+h1+h2)), 1+max h1 h2)
 *)
 
-Unset Standard Proposition Elimination Names.
 Global Set Asymmetric Patterns.
 
 Require Export Omega.
@@ -92,9 +91,9 @@ Section Paths.
   Qed.
 
 End Paths.
-Implicit Arguments path [A].
-Implicit Arguments dist [A].
-Implicit Arguments diameter [A].
+Arguments path [A].
+Arguments dist [A].
+Arguments diameter [A].
 Hint Resolve path_sym path_1.
 Hint Constructors path.
 
